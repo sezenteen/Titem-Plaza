@@ -1,0 +1,50 @@
+---
+import { useState, useEffect } from "react";
+
+const Cart = () => {
+  interface CartItem {
+    productId: string;
+    quantity: number;
+  }
+
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCart(storedCart);
+  }, []);
+
+  const removeFromCart = (productId: any) => {
+    const updatedCart = cart.filter((item) => item.productId !== productId);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  return (
+    <div>
+      <h1 class="text-4xl font-bold text-center mt-6 text-gray-800">🛒 Your Cart</h1>
+
+      <div class="max-w-4xl mx-auto px-6 py-10">
+        {cart.length > 0 ? (
+          <div>
+            {cart.map((item) => (
+              <div class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center mb-4" key={item.productId}>
+                <p class="text-lg">{item.productId} - Quantity: {item.quantity}</p>
+                <button class="bg-red-600 text-white px-3 py-1 rounded-lg" onClick={() => removeFromCart(item.productId)}>
+                  ❌ Remove
+                </button>
+              </div>
+            ))}
+            <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg w-full">Checkout</button>
+          </div>
+        ) : (
+          // < p class="text-center text-gray-500">Your cart is empty 😢</>
+          <p class="text-center text-gray-500">Your cart is empty</p>
+        )}
+      </div>
+    </div>
+  );
+};
+---
+
+<Cart client:load />

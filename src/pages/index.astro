@@ -1,11 +1,38 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+const response = await fetch("http://localhost:5000/api/products");
+const products = await response.json();
+import './src/styles/global.css';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const addToCart = (productId: string) => {
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const item = cart.find((p: { productId: string; quantity: number }) => p.productId === productId);
+  if (item) {
+    item.quantity += 1;
+  } else {
+    cart.push({ productId, quantity: 1 });
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart!");
+};
 ---
+<meta charset="UTF-8">
+<h1 class="text-4xl font-bold text-center mt-6 text-gray-800">Stationery Shop 🛍️</h1>
 
-<Layout>
-	<Welcome />
-</Layout>
+<div class="max-w-7xl mx-auto px-6 py-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {products.map((product: { _id: string; image: string; name: string; description: string; price: number }) => (
+      <div class="bg-white shadow-lg rounded-xl p-4 transition-transform transform hover:scale-105">
+        <img src={product.image} alt={product.name} class="w-full h-40 object-cover rounded-md" />
+        <h2 class="text-lg font-semibold mt-2 text-gray-700">{product.name}</h2>
+        <p class="text-gray-500 text-sm mt-1">{product.description}</p>
+        <p class="text-gray-800 font-bold mt-2">$ {product.price}</p>
+        <button
+          class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700"
+          onclick={() => addToCart(product._id)}
+        >
+          Add to Cart 🛒
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
