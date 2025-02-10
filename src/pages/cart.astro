@@ -17,16 +17,16 @@ const cartItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Таны Сагс</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-[#5E60CE] text-white">
     <Header />
     
     <main class="container mx-auto px-4 py-10">
-        <h1 class="text-4xl font-bold text-center text-gray-600 mb-10">Таны Сагс</h1>
+        <h1 class="text-4xl font-bold text-center mb-10">Таны Сагс</h1>
         
-        <div class="bg-white shadow-md rounded-lg p-6">
-            <table class="w-full border-collapse">
+        <div class="bg-[#7C83FD] shadow-lg rounded-lg p-6">
+            <table class="w-full border-collapse text-white">
                 <thead>
-                    <tr class="bg-gray-200">
+                    <tr class="bg-[#5E60CE]">
                         <th class="p-3 text-left">Барааны нэр</th>
                         <th class="p-3 text-center">Тоо ширхэг</th>
                         <th class="p-3 text-right">Үнэ</th>
@@ -36,13 +36,13 @@ const cartItems = [
                 </thead>
                 <tbody>
                     {cartItems.map((item) => (
-                        <tr key={item.id} class="border-b">
+                        <tr key={item.id} class="border-b border-gray-400">
                             <td class="p-3">{item.name}</td>
                             <td class="p-3 text-center">{item.quantity}</td>
                             <td class="p-3 text-right">{item.price}₮</td>
                             <td class="p-3 text-right">{item.price * item.quantity}₮</td>
                             <td class="p-3 text-center">
-                                <button class="bg-gray-700 text-white px-3 py-1 rounded">Хасах</button>
+                                <button class="bg-[#5E60CE] text-white px-3 py-1 rounded">Хасах</button>
                             </td>
                         </tr>
                     ))}
@@ -50,7 +50,7 @@ const cartItems = [
             </table>
             
             <div class="text-right mt-6">
-                <button class="bg-purple-900 text-white px-6 py-2 rounded text-lg mr-12">Төлбөр төлөх</button>
+                <button class="bg-white text-[#5E60CE] px-6 py-2 rounded text-lg font-semibold">Төлбөр төлөх</button>
             </div>
         </div>
     </main>
