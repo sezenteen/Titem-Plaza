@@ -1,0 +1,48 @@
+---
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нэвтрэх - Титэм Плаза</title>
+</head>
+<body class="bg-gray-100">
+    <Header />
+    
+    <main class="container mx-auto px-4 py-10 flex justify-center">
+        <div class="bg-white mt-5 shadow-md rounded-lg p-6 w-full max-w-md">
+            <h1 class="text-3xl font-bold text-center text-purple-900 mb-6">Нэвтрэх</h1>
+            
+            <form action="/auth/login" method="POST" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-gray-700 font-medium">Имэйл</label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-gray-700 font-medium">Нууц үг</label>
+                    <input type="password" id="password" name="password" required 
+                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <button type="submit" class="w-full bg-purple-600 text-white font-medium py-2 rounded-lg hover:bg-purple-700">
+                    Нэвтрэх
+                </button>
+
+                <p class="text-center text-gray-600 flex gap-50 mt-4">
+                    <a href="/register" class="text-purple-600 hover:underline  justify-start">Бүртгүүлэх</a>
+                    <a href="/forgot-password" class="text-purple-600 hover:underline justify-end">Нууц үг мартсан</a>
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <Footer />
+</body>
+</html>

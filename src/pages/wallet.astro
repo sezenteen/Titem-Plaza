@@ -1,0 +1,74 @@
+---
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import './src/styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таны Сагс</title>
+</head>
+<body class="bg-gray-100">
+    <Header />
+    <main class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-center text-gray-600 mb-10">Таны Хэтэвч</h1>
+
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <table class="w-full border-collapse">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="p-3 text-left">Дансны үлдэгдэл</th>
+                        <th class="p-3 text-right">Сагс</th>
+                        <th class="p-3 text-right">Нийт</th>
+                        <th class="p-3 text-center">Гүйлгээ</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <div class="text-right mt-6">
+                <button class="bg-purple-900 text-white px-6 py-2 rounded text-lg mr-12">Данс цэнэглэх</button>
+            </div>
+            
+
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("comment-form");
+            const commentsList = document.getElementById("comments-list");
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                // Get user input
+                const name = document.getElementById("name").value.trim();
+                const comment = document.getElementById("comment").value.trim();
+
+                if (name && comment) {
+                    // Create a new comment element
+                    const commentElement = document.createElement("div");
+                    commentElement.classList.add("p-4", "border", "rounded-lg", "shadow-md", "bg-gray-100");
+
+                    commentElement.innerHTML = `
+                        <p class="font-semibold text-purple-800">${name}</p>
+                        <p class="text-gray-700">${comment}</p>
+                    `;
+
+                    // Add comment to the list
+                    commentsList.prepend(commentElement);
+
+                    // Clear the form
+                    form.reset();
+                }
+            });
+        });
+    </script>
+    <Footer />
+</body>
+</html>

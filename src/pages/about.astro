@@ -1,8 +1,53 @@
 ---
-import './src/styles/global.css';
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import '../styles/global.css';
 ---
 
-<div>
-    <h1 class="bg-rose-400 text-lg">About</h1>
-    <p>This is the about page.</p>
-</div>
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бидний тухай - Титэм Плаза</title>
+</head>
+<body class="bg-gray-100">
+    <Header />
+    
+    <main class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-center text-purple-900 mb-10">Бидний тухай</h1>
+        
+        <section class="bg-white shadow-md rounded-lg p-6 text-gray-700">
+            <p class="text-lg leading-relaxed">
+                Титэм Плаза нь Монгол Улсад бичиг хэргийн бүтээгдэхүүн, ном, уран зураг, 
+                бэлэг дурсгалын худалдаа эрхэлдэг тэргүүлэх компаниудын нэг юм. Манай дэлгүүр 
+                нь хамгийн чанартай бараа бүтээгдэхүүнийг хэрэглэгчдэд хүргэх зорилготой.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-purple-800 mt-6">Эрхэм зорилго</h2>
+            <p class="text-lg leading-relaxed">
+                Бид хэрэглэгчдэдээ хамгийн сайн чанарын бүтээгдэхүүнийг өргөн сонголттойгоор 
+                хүргэх, найдвартай үйлчилгээ үзүүлэхийг эрхэмлэдэг.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-purple-800 mt-6">Манай үйлчилгээ</h2>
+            <ul class="list-disc ml-6 text-lg">
+                <li>Бичиг хэргийн бүтээгдэхүүн</li>
+                <li>Ном, хэвлэл</li>
+                <li>Жааз, уран зураг</li>
+                <li>Принтерийн хор</li>
+                <li>Бэлэг дурсгалын бараа</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-purple-800 mt-6">Холбоо барих</h2>
+            <p class="text-lg leading-relaxed">
+                📍 Манай хаяг: Улаанбаатар хот, Сүхбаатар дүүрэг, 1-р хороо, Титэм Плаза  
+                📞 Утас: +976 9900 1234  
+                ✉️ Имэйл: info@titem.mn  
+            </p>
+        </section>
+    </main>
+
+    <Footer />
+</body>
+</html>

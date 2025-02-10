@@ -1,50 +1,60 @@
 ---
-import { useState, useEffect } from "react";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import './src/styles/global.css';
 
-const Cart = () => {
-  interface CartItem {
-    productId: string;
-    quantity: number;
-  }
-
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCart(storedCart);
-  }, []);
-
-  const removeFromCart = (productId: any) => {
-    const updatedCart = cart.filter((item) => item.productId !== productId);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  return (
-    <div>
-      <h1 class="text-4xl font-bold text-center mt-6 text-gray-800">🛒 Your Cart</h1>
-
-      <div class="max-w-4xl mx-auto px-6 py-10">
-        {cart.length > 0 ? (
-          <div>
-            {cart.map((item) => (
-              <div class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center mb-4" key={item.productId}>
-                <p class="text-lg">{item.productId} - Quantity: {item.quantity}</p>
-                <button class="bg-red-600 text-white px-3 py-1 rounded-lg" onClick={() => removeFromCart(item.productId)}>
-                  ❌ Remove
-                </button>
-              </div>
-            ))}
-            <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg w-full">Checkout</button>
-          </div>
-        ) : (
-          // < p class="text-center text-gray-500">Your cart is empty 😢</>
-          <p class="text-center text-gray-500">Your cart is empty</p>
-        )}
-      </div>
-    </div>
-  );
-};
+const cartItems = [
+    { id: 1, name: "Ном", price: 25000, quantity: 1 },
+    { id: 2, name: "Притерийн хор", price: 45000, quantity: 2 },
+    { id: 3, name: "Жааз, уран зураг", price: 60000, quantity: 1 }
+];
 ---
 
-<Cart client:load />
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таны Сагс</title>
+</head>
+<body class="bg-gray-100">
+    <Header />
+    
+    <main class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-center text-gray-600 mb-10">Таны Сагс</h1>
+        
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <table class="w-full border-collapse">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="p-3 text-left">Барааны нэр</th>
+                        <th class="p-3 text-center">Тоо ширхэг</th>
+                        <th class="p-3 text-right">Үнэ</th>
+                        <th class="p-3 text-right">Нийт</th>
+                        <th class="p-3 text-center">Үйлдэл</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {cartItems.map((item) => (
+                        <tr key={item.id} class="border-b">
+                            <td class="p-3">{item.name}</td>
+                            <td class="p-3 text-center">{item.quantity}</td>
+                            <td class="p-3 text-right">{item.price}₮</td>
+                            <td class="p-3 text-right">{item.price * item.quantity}₮</td>
+                            <td class="p-3 text-center">
+                                <button class="bg-gray-700 text-white px-3 py-1 rounded">Хасах</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            
+            <div class="text-right mt-6">
+                <button class="bg-purple-900 text-white px-6 py-2 rounded text-lg mr-12">Төлбөр төлөх</button>
+            </div>
+        </div>
+    </main>
+    
+    <Footer />
+</body>
+</html>
