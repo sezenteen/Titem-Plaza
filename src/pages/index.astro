@@ -1,38 +1,67 @@
 ---
-const response = await fetch("http://localhost:5000/api/products");
-const products = await response.json();
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
 import './src/styles/global.css';
-
-const addToCart = (productId: string) => {
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const item = cart.find((p: { productId: string; quantity: number }) => p.productId === productId);
-  if (item) {
-    item.quantity += 1;
-  } else {
-    cart.push({ productId, quantity: 1 });
-  }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Added to cart!");
-};
 ---
-<meta charset="UTF-8">
-<h1 class="text-4xl font-bold text-center mt-6 text-gray-800">Stationery Shop 🛍️</h1>
 
-<div class="max-w-7xl mx-auto px-6 py-10">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    {products.map((product: { _id: string; image: string; name: string; description: string; price: number }) => (
-      <div class="bg-white shadow-lg rounded-xl p-4 transition-transform transform hover:scale-105">
-        <img src={product.image} alt={product.name} class="w-full h-40 object-cover rounded-md" />
-        <h2 class="text-lg font-semibold mt-2 text-gray-700">{product.name}</h2>
-        <p class="text-gray-500 text-sm mt-1">{product.description}</p>
-        <p class="text-gray-800 font-bold mt-2">$ {product.price}</p>
-        <button
-          class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700"
-          onclick={() => addToCart(product._id)}
-        >
-          Add to Cart 🛒
-        </button>
-      </div>
-    ))}
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нүүр хуудас</title>
+</head>
+<body class="bg-white text-[#5E60CE]">
+    <Header class="sticky top-0 z-50" />
+    
+    <nav class="bg-[#5E60CE] text-white p-4 md:hidden">
+        <ul class="flex justify-around">
+            <li><a href="/" class="bg-[#7C83FD] text-white px-4 py-2 rounded-md font-semibold">Нүүр хуудас</a></li>
+            <li><a href="/about" class="bg-[#7C83FD] text-white px-4 py-2 rounded-md font-semibold">Бидний тухай</a></li>
+            <li><a href="#contact" class="bg-[#7C83FD] text-white px-4 py-2 rounded-md font-semibold">Холбоо барих</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-center mb-10">Онцлох хямдрал</h1>
+        
+        <!-- Advertisement Section -->
+        <section class="bg-[#7C83FD] text-white rounded-lg shadow-lg p-6 text-center">
+            <h2 class="text-3xl font-bold">Онцгой хямдрал!</h2>
+            <p class="mt-2">Манай дэлгүүрт 50% хүртэлх хямдралтай бүтээгдэхүүнүүд байна.</p>
+            <button class="mt-4 bg-white text-[#5E60CE] px-6 py-2 rounded-lg font-semibold">Худалдаж авах</button>
+        </section>
+
+        <!-- Additional Advertisement Section -->
+        <section class="bg-[#7C83FD] text-white rounded-lg shadow-lg p-6 text-center mt-10">
+            <h2 class="text-3xl font-bold">Тусгай санал!</h2>
+            <p class="mt-2">Зөвхөн өнөөдөр 70% хямдралтай бүтээгдэхүүнүүд.</p>
+            <button class="mt-4 bg-white text-[#5E60CE] px-6 py-2 rounded-lg font-semibold">Худалдаж авах</button>
+        </section>
+        
+        <!-- Sales Section -->
+        <section class="mt-10">
+            <h2 class="text-3xl font-bold text-center">Хямдралтай бүтээгдэхүүнүүд</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-semibold">Бичгийн хэрэгсэл</h3>
+                    <p class="text-gray-600 mt-2">20% хямдрал</p>
+                    <button class="mt-4 bg-[#5E60CE] text-white px-4 py-2 rounded">Дэлгэрэнгүй</button>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-semibold">Оффисын тавилга</h3>
+                    <p class="text-gray-600 mt-2">30% хямдрал</p>
+                    <button class="mt-4 bg-[#5E60CE] text-white px-4 py-2 rounded">Дэлгэрэнгүй</button>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-semibold">Цаасан бүтээгдэхүүн</h3>
+                    <p class="text-gray-600 mt-2">15% хямдрал</p>
+                    <button class="mt-4 bg-[#5E60CE] text-white px-4 py-2 rounded">Дэлгэрэнгүй</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <Footer />
+</body>
+</html>

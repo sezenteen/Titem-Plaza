@@ -13,12 +13,20 @@ import '../styles/global.css';
 </head>
 <body class="bg-white text-black">
     <Header />
+
+    <nav class="bg-[#5E60CE] text-white p-4 md:hidden">
+        <ul class="flex justify-around">
+            <li><a href="/" class="bg-[#7C83FD] text-white px-4 py-2 rounded-md font-semibold">Нүүр хуудас</a></li>
+            <li><a href="/about" class="bg-[#7C83FD] text-white px-4 py-2 rounded-md font-semibold">Бидний тухай</a></li>
+            <li><a href="#contact" class="bg-[#7C83FD] text-white px-4 py-2 rounded-md font-semibold">Холбоо барих</a></li>
+        </ul>
+    </nav>
     
     <main class="container mx-auto px-4 py-10 flex justify-center">
         <div class="bg-gray-100 shadow-lg rounded-lg p-8 w-full max-w-md">
             <h1 class="text-3xl font-bold text-center text-[#5E60CE] mb-6">Бүртгүүлэх</h1>
-            
-            <form action="/auth/register" method="POST" class="space-y-6">
+
+            <form id="register-form" class="space-y-6">
                 <div>
                     <label for="name" class="block text-[#5E60CE] font-medium">Нэр</label>
                     <input type="text" id="name" name="name" required 
@@ -47,13 +55,74 @@ import '../styles/global.css';
                     Бүртгүүлэх
                 </button>
 
+                <p id="register-message" class="text-center text-gray-700 mt-4"></p>
+
                 <p class="text-center text-gray-700 mt-4">
                     <a href="/login" class="text-[#5E60CE] hover:underline">Нэвтрэх</a>
                 </p>
             </form>
         </div>
     </main>
-    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("register-form");
+            if (!form) return;
+
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault(); // Prevent page reload
+
+                // Fetch form values
+                const nameInput = document.getElementById("name") as HTMLInputElement | null;
+                const emailInput = document.getElementById("email") as HTMLInputElement | null;
+                const passwordInput = document.getElementById("password") as HTMLInputElement | null;
+                const confirmPasswordInput = document.getElementById("confirm_password") as HTMLInputElement | null;
+                const messageElement = document.getElementById("register-message");
+
+                if (!nameInput || !emailInput || !passwordInput || !confirmPasswordInput || !messageElement) {
+                    return;
+                }
+
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                const confirmPassword = confirmPasswordInput.value.trim();
+
+                if (!messageElement) return;
+
+                // Validate password match
+                if (password !== confirmPassword) {
+                    messageElement.textContent = "⚠ Нууц үг таарахгүй байна!";
+                    messageElement.style.color = "red";
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://localhost:8080/auth/register", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ name, email, password })
+                    });
+
+                    if (response.ok) {
+                        messageElement.textContent = "✅ Бүртгэл амжилттай!";
+                        messageElement.style.color = "green";
+                        setTimeout(() => window.location.href = "/login", 2000); // Redirect after success
+                    } else {
+                        const errorText = await response.text();
+                        messageElement.textContent = `❌ Алдаа гарлаа! ${errorText}`;
+                        messageElement.style.color = "red";
+                    }
+                } catch (error) {
+                    messageElement.textContent = "❌ Сервертэй холбогдож чадсангүй!";
+                    messageElement.style.color = "red";
+                }
+            });
+        });
+    </script>
+
     <Footer />
 </body>
 </html>
