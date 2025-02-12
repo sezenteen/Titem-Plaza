@@ -1,0 +1,35 @@
+---
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+
+const categories = [
+  { name: "Бичгийн хэрэгсэл", slug: "writing-tools" },
+  { name: "Оффисын тавилга", slug: "office-furniture" },
+  { name: "Цаасан бүтээгдэхүүн", slug: "paper-products" },
+];
+---
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <title>Бүтээгдэхүүний Ангилал</title>
+</head>
+<body class="bg-white text-[#5E60CE]">
+    <Header />
+
+    <main class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-center mb-10">Бүтээгдэхүүний Ангилал</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {categories.map(category => (
+                <a href={`/category/${category.slug}`} class="bg-gray-100 p-4 rounded-lg shadow-md text-center hover:bg-[#5E60CE] hover:text-white transition">
+                    <h3 class="text-xl font-semibold">{category.name}</h3>
+                </a>
+            ))}
+        </div>
+    </main>
+
+    <Footer />
+</body>
+</html>

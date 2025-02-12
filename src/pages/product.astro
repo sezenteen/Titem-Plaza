@@ -1,0 +1,39 @@
+---
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+
+const products = [
+  { id: 1, name: "Үзэг", price: "2,500₮", image: "/images/pen.jpg" },
+  { id: 2, name: "Харандаа", price: "1,500₮", image: "/images/pencil.jpg" },
+  { id: 3, name: "Дэвтэр", price: "5,000₮", image: "/images/notebook.jpg" },
+  { id: 4, name: "А4 Цаас", price: "15,000₮", image: "/images/a4paper.jpg" },
+];
+---
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <title>Бүтээгдэхүүн</title>
+</head>
+<body class="bg-white text-[#5E60CE]">
+    <Header />
+
+    <main class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-center mb-10">Бүтээгдэхүүн</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products.map(product => (
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <img src={product.image} alt={product.name} class="w-full h-40 object-cover rounded-md">
+                    <h3 class="text-xl font-semibold mt-4">{product.name}</h3>
+                    <p class="text-gray-600 mt-2">{product.price}</p>
+                    <button class="mt-4 bg-[#5E60CE] text-white px-4 py-2 rounded">Сагслах</button>
+                </div>
+            ))}
+        </div>
+    </main>
+
+    <Footer />
+</body>
+</html>
