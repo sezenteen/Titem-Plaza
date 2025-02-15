@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Mak Optima';
+  src: url('/fonts/mak-optima.woff2') format('woff2'),
+       url('/fonts/mak-optima.woff') format('woff'),
+       url('/fonts/mak-optima.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

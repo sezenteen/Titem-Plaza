@@ -1,0 +1,162 @@
+---
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import './src/styles/global.css';
+import Sidebar from "../components/sidebar.astro"; 
+import { transactions, users } from "../data/adminData.js"; 
+---
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Хянах Самбар</title>
+    <style>
+        body {
+            font-family: "Optima", sans-serif;
+        }
+        .card {
+            background: linear-gradient(135deg, #F7941E, #003375);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        .table-container th, .table-container td {
+            padding: 15px;
+            text-align: left;
+        }
+        .table-container th {
+            background: #F7941E;
+            color: white;
+        }
+        .table-container tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .table-container tr:hover {
+            background: #e0e7ff;
+        }
+    </style>
+</head>
+<body class="bg-blue-100 text-gray-900">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        {<Sidebar />}
+
+        <!-- Main Content -->
+        <main class="flex-1 container mx-auto p-4 md:p-6">
+            <h1 class="flex justify-start md:justify-center text-2xl md:text-3xl font-bold mb-6 text-[#F7941E]">Админ Хянах Самбар</h1>
+
+            <!-- Wallet Overview -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                <div class="card">
+                    <h2>Нийт Хэрэглэгч</h2>
+                    <p>{users.length}</p>
+                </div>
+                <div class="card">
+                    <h2>Нийт Гүйлгээ</h2>
+                    <p>{transactions.length}</p>
+                </div>
+                <div class="card">
+                    <h2>Нийт Хадгаламж</h2>
+                    <p>₮ {transactions.reduce((sum: number, t: { amount: number }) => sum + t.amount, 0)}</p>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="table-container">
+                <h2 class="text-xl font-semibold mb-4 text-[#F7941E]">Сүүлийн Гүйлгээнүүд</h2>
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Хэрэглэгч</th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Дүн</th>
+                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Огноо</th>
+                            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Төлөв</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {transactions.map(transaction => (
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">{transaction.user}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">₮ {transaction.amount}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">{transaction.date}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">{transaction.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container">
+                <h2 class="text-xl font-semibold mb-4 text-[#F7941E]">Сүүлийн Гүйлгээнүүд</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Хэрэглэгч</th>
+                            <th class="text-right">Дүн</th>
+                            <th class="text-center">Огноо</th>
+                            <th class="text-center">Төлөв</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {transactions.map(transaction => (
+                            <tr>
+                                <td>{transaction.user}</td>
+                                <td class="text-right">₮ {transaction.amount}</td>
+                                <td class="text-center">{transaction.date}</td>
+                                <td class="text-center">{transaction.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container">
+                <h2 class="text-xl font-semibold mb-4 text-[#F7941E]">Сүүлийн Гүйлгээнүүд</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Хэрэглэгч</th>
+                            <th class="text-right">Дүн</th>
+                            <th class="text-center">Огноо</th>
+                            <th class="text-center">Төлөв</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {transactions.map(transaction => (
+                            <tr>
+                                <td>{transaction.user}</td>
+                                <td class="text-right">₮ {transaction.amount}</td>
+                                <td class="text-center">{transaction.date}</td>
+                                <td class="text-center">{transaction.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

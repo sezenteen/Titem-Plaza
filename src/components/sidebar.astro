@@ -1,0 +1,68 @@
+---
+import './src/styles/global.css';
+---
+
+<!-- Sidebar Toggle Button -->
+<button id="sidebarToggle" class="absolute top-4 right-4 bg-[#F7941E] text-white px-3 py-2 rounded-md shadow-lg z-50 md:hidden" style="font-family: Optima, sans-serif;">
+    ☰ Меню
+</button>
+
+<aside id="sidebar" class="w-full md:w-64 bg-[#F7941E] h-screen fixed md:relative md:sticky md:top-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto shadow-lg md:overflow-hidden z-40" style="font-family: Optima, sans-serif;">
+    <nav class="flex flex-col h-full">
+        <!-- Logo Section -->
+        <div class="flex items-center justify-center p-6 md:p-8">
+            <img src="/src/assets/titem_white.png" alt="Титэм Плаза" class="h-16 md:h-24 w-auto">
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="flex flex-col flex-grow space-y-2 p-4">
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Dashboard</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Analytics</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Invoice</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Schedule</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Calendar</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Messages</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Notification</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-[#FFAA00] hover:text-white text-center" style="font-family: Optima, sans-serif;">Settings</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-green-600 hover:text-white text-center" style="font-family: Optima, sans-serif;">Sign In</a>
+            </li>
+            <li>
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-green-600 hover:text-white text-center" style="font-family: Optima, sans-serif;">Sign Up</a>
+            </li>
+            <li class="mb-6">
+                <a href="#" class="block text-white text-lg md:text-base px-4 py-2 rounded-md transition-all duration-300 hover:bg-red-600 hover:text-white text-center" style="font-family: Optima, sans-serif;">Log out</a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<!-- Sidebar Toggle Script -->
+<script>
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('translate-x-0');
+        });
+    }
+</script>
+</script>

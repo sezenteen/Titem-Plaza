@@ -10,6 +10,8 @@ const cartItems = [
     { id: 2, name: "Притерийн хор", price: 45000, quantity: 2 },
     { id: 3, name: "Жааз, уран зураг", price: 60000, quantity: 1 }
 ];
+
+const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 ---
 
 <!DOCTYPE html>
@@ -19,40 +21,41 @@ const cartItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Таны Сагс</title>
 </head>
-<body class="bg-[#5E60CE] text-white">
+<body class="bg-[url('/src/images/bg1.png')] bg-cover bg-center h-screen w-full text-[#003375]">
     <Header />
     
     <main class="container mx-auto px-4 py-10">
         <h1 class="text-4xl font-bold text-center mb-10">Таны Сагс</h1>
         
-        <div class="bg-[#7C83FD] shadow-lg rounded-lg p-6">
-            <table class="w-full border-collapse text-white">
-                <thead>
-                    <tr class="bg-[#5E60CE]">
-                        <th class="p-3 text-left">Барааны нэр</th>
-                        <th class="p-3 text-center">Тоо ширхэг</th>
-                        <th class="p-3 text-right">Үнэ</th>
-                        <th class="p-3 text-right">Нийт</th>
-                        <th class="p-3 text-center">Үйлдэл</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {cartItems.map((item) => (
-                        <tr key={item.id} class="border-b border-gray-400">
-                            <td class="p-3">{item.name}</td>
-                            <td class="p-3 text-center">{item.quantity}</td>
-                            <td class="p-3 text-right">{item.price}₮</td>
-                            <td class="p-3 text-right">{item.price * item.quantity}₮</td>
-                            <td class="p-3 text-center">
-                                <button class="bg-[#5E60CE] text-white px-3 py-1 rounded">Хасах</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+        <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+            <table class="w-full rounded-lg text-[#003375]">
+            <thead class="bg-[#0055AA] text-white border rounded-lg">
+                <tr class="bg-[#0055AA] text-white">
+                <th class="p-3 text-left">Барааны нэр</th>
+                <th class="p-3 text-center">Тоо ширхэг</th>
+                <th class="p-3 text-right">Үнэ</th>
+                <th class="p-3 text-right">Нийт</th>
+                <th class="p-3 text-center">Үйлдэл</th>
+                </tr>
+            </thead>
+            <tbody>
+                {cartItems.map((item) => (
+                <tr key={item.id} class="border-b border-gray-200">
+                    <td class="p-3">{item.name}</td>
+                    <td class="p-3 text-center">{item.quantity}</td>
+                    <td class="p-3 text-right">{item.price}₮</td>
+                    <td class="p-3 text-right">{item.price * item.quantity}₮</td>
+                    <td class="p-3 text-center">
+                    <button class="bg-[#0055AA] text-white px-3 py-1 rounded hover:bg-[#003375]">Хасах</button>
+                    </td>
+                </tr>
+                ))}
+            </tbody>
             </table>
             
             <div class="text-right mt-6">
-                <button class="bg-white text-[#5E60CE] px-6 py-2 rounded text-lg font-semibold">Төлбөр төлөх</button>
+            <p class="text-lg font-semibold mb-4">Нийт үнэ: {totalPrice}₮</p>
+            <button class="bg-[#0055AA] text-white px-6 py-2 rounded text-lg font-semibold hover:bg-[#003375]">Төлбөр төлөх</button>
             </div>
         </div>
     </main>
