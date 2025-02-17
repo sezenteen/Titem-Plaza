@@ -12,7 +12,7 @@ import './src/styles/global.css';
         padding: 0;
     }
 </style>
-<div id="header" class="header bg-[#003375] font-sans text-white px-4 py-2"
+<div id="header" class="header bg-[#011c3e] font-sans text-white px-4 py-2"
     x-data="{ menuOpen: false, isSticky: false, lastScroll: 0, isScrollingDown: false }"
     @scroll.window="isSticky = window.scrollY> 50;isScrollingDown = window.scrollY > lastScroll;lastScroll = window.scrollY;
     " :class="{'shadow-md': isSticky}" x-cloak>
