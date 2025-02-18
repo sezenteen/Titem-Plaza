@@ -1,0 +1,100 @@
+---
+import './src/styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-200">
+
+    <div class="carousel-container">
+        <!-- Carousel Wrapper -->
+        <div id="carousel" class="carousel">
+            <img src="/src/images/campus.jpg" alt="Campus Image 1">
+            <img src="/src/images/campus1.jpg" alt="Campus Image 2">
+            <img src="/src/images/campus2.jpg" alt="Campus Image 3">
+        </div>
+
+        <!-- Prev Button -->
+        <button onclick="prevSlide()" class="carousel-button prev">
+            ❮
+        </button>
+
+        <!-- Next Button -->
+        <button onclick="nextSlide()" class="carousel-button next">
+            ❯
+        </button>
+    </div>
+
+    <script>
+        let index = 0;
+        const totalSlides = document.querySelectorAll("#carousel img").length;
+        const carousel = document.getElementById("carousel");
+
+        function updateCarousel() {
+            if (carousel) {
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+            }
+        }
+
+        function nextSlide() {
+            index = (index + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCarousel();
+        });
+    </script>
+
+</body>
+</html>
