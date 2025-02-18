@@ -4,41 +4,49 @@ import Footer from "../components/footer.astro";
 import Icons from "../components/icons.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="mn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таны Хэтэвч</title>
-</head>
-<body class="bg-gray-50 text-[#003375]">
-    <Header />
+<Fragment>
+    <html lang="mn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Таны Хэтэвч</title>
+    </head>
+    <body class="bg-gray-50 text-[#003375]">
+        <Header />
 
-    <main class="container mx-auto px-4 py-10">
-        <h1 class="text-4xl font-bold text-center mb-10">Таны Хэтэвч</h1>
+        <main class="container mx-auto px-4 py-10">
+            <h1 class="text-4xl font-bold text-center mb-10">Таны Хэтэвч</h1>
 
-        <div class="bg-gray-100 shadow-lg rounded-lg p-6">
-            <table class="w-full border-collapse text-white">
-                <thead>
-                    <tr class="bg-gray-200 text-[#003375] border rounded-lg">
-                        <th class="p-3 text-left">Дансны үлдэгдэл</th>
-                        <th class="p-3 text-right">Сагс</th>
-                        <th class="p-3 text-right">Нийт</th>
-                        <th class="p-3 text-center">Гүйлгээ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                <table class="w-full border-collapse text-white">
+                    <thead>
+                        <tr class="bg-gray-200 text-[#003375] border rounded-lg">
+                            <th class="p-3 text-left">Дансны үлдэгдэл</th>
+                            <th class="p-3 text-right">Сагс</th>
+                            <th class="p-3 text-right">Нийт</th>
+                            <th class="p-3 text-center">Гүйлгээ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b text-[#003375]">
+                            <td class="p-3 text-left">100,000₮</td>
+                            <td class="p-3 text-right">50,000₮</td>
+                            <td class="p-3 text-right">150,000₮</td>
+                            <td class="p-3 text-center">
+                                <button class="bg-gray-200 text-[#003375] px-4 py-2 rounded">Дэлгэрэнгүй</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="text-right mt-6">
-                <button class="bg-gray-200 text-[#003375] px-6 py-2 rounded text-lg mr-12 font-semibold">Данс цэнэглэх</button>
+                <div class="text-right mt-6">
+                    <button class="bg-gray-200 text-[#003375] px-6 py-2 rounded text-lg mr-12 font-semibold">Данс цэнэглэх</button>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <Icons />
-
-    <Footer />
-</body>
-</html>
+        <Icons />
+        <Footer />
+    </body>
+    </html>
+</Fragment>

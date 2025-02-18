@@ -7,6 +7,7 @@ import Header1 from "@/components/header1.astro";
 import NewsList from '../components/NewsList.jsx';
 
 import axios from 'axios';
+import Carousel from "@/components/carousel.astro";
 
 const API_URL = "http://west.edu.mn:3000/api/v1/news";
 
@@ -51,6 +52,7 @@ const newsData = await fetchNews();
 
         <main class="container mx-auto px-4 py-10">
                 <h1 class="text-4xl font-bold text-center mb-10">Онцлох хямдрал</h1>
+                <Carousel />
 
                 <!-- News Section -->
                 <section class="mt-10">
